@@ -31,16 +31,16 @@ public class Recursion{
 	if (n < 0){
 	    throw new IllegalArgumentException();
 	}
-	return sqrtHelp(n, 1);
+	return help(n, 1);
     }
 
-    public double sqrtHelp(double n, double guess){
+    public double help(double n, double g){
 	if (n == 0){
 	    return 0;
-	}else if (guess * guess == n){
-	    return guess;
+	}else if (g * g == n){
+	    return g;
 	}else{
-	    return sqrtHelp(n, (n / guess + guess) / 2);
+	    return help(n, (n / g + g) / 2);
 	}
     }
     
