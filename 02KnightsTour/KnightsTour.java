@@ -11,8 +11,17 @@ public class KnightsTour{
     
     //instance variable
     private int[][]board;
-    //   private int maxx, maxy;
-    //  private int startx, starty;
+    private int size;
+    
+    public KnightsTour(int length){
+	board = new int[length][length];
+	size = length;
+	for (int rows = 0; rows < size; rows++){
+	    for (int cols = 0; cols < size; cols++){
+		board[rows][cols] = 0;
+	    }
+	}
+    }
 
     //terminal specific character to move the cursor
     private String go(int x,int y){
@@ -27,31 +36,17 @@ public class KnightsTour{
 	}
     }
     
-    public String toString(int maxx, int maxy){
+    public String toString(){
 	String ans = "\n";
-	int x = maxx + (maxx - 1);
-	int y = maxy + (maxy - 1);
-	/*	for (int i = 0; i < x * y; i++){
-	    if(i % x == 0 && i != 0){
-		ans += "\n";
-	    }
-	*/
-	for (int rows = 0; rows < y; rows++){
-	    for (int cols = 0; cols < x; cols++){ 
-		if (cols >= x){
-		    ans += " \n";
+	for (int rows = 0; rows < board.length; rows++){
+	    for (int cols = 0; cols < board[0].length; cols++){ 
+		ans += board[rows][cols] + " ";
+		if (cols == size - 1){
+		    ans += "\n";
 		}
-		else if (rows % 2 == 1){
-		    ans += "-";
-		}
-		else if (cols % 2 == 1 && rows % 2 == 0){
-		    ans += "|";
-		}else
-		    ans += " ";
-		
-	    }
+	  }
 	}
-	    return hide + go(0,0) + ans + "\n" + show;
+	    return hide + clear + go(0,0) + ans + "\n" + show;
     }
     
 	/*   public KnightsTour(int size){
@@ -79,8 +74,8 @@ public class KnightsTour{
 	*/
 
 	public static void main(String[]args){
-	    KnightsTour p1 = new KnightsTour();
-	    System.out.println(p1.toString(10,10));
+	    KnightsTour p1 = new KnightsTour(10);
+	    System.out.println(p1.toString());
 	}
     
     
