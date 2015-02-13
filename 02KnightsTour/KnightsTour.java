@@ -11,11 +11,12 @@ public class KnightsTour{
     
     //instance variable
     private int[][]board;
-    private int size;
+    private int size, numMoves;
     
     public KnightsTour(int length){
 	board = new int[length][length];
 	size = length;
+	numMoves = 1;
 	for (int rows = 0; rows < size; rows++){
 	    for (int cols = 0; cols < size; cols++){
 		board[rows][cols] = 0;
@@ -48,18 +49,14 @@ public class KnightsTour{
 	}
 	    return hide + clear + go(0,0) + ans + "\n" + show;
     }
-    
-	/*   public KnightsTour(int size){
-	
-    }
-    
+       
     
     public void solve(){
 	
     }
     
     public void solve(int startx, int starty){
-	
+  
     }
     
     
@@ -67,11 +64,24 @@ public class KnightsTour{
     public boolean solve(int x,int y,int currentMoveNumber){
 	System.out.println(this);
 	wait(20);
-	
-	return false;
+	if (currentMoveNumber == size * size){
+	    return true;
+	}
+	try{
+	    if (board[y][x] != 0){
+		return false;
+	    }
+	    if (board[y][x] == 0){
+		board[y][x] = currentMoveNumber;
+		if (solve(x-2,y-1,currentMoveNumber+1) || solve(x-2,y-1,currentMoveNumber+1) || solve(x+2,y-1,currentMoveNumber+1) || solve(x+2,y+1,currentMoveNumber+1) || solve(x-1,y-2,currentMoveNumber+1) || solve(x+1,y-2,currentMoveNumber+1)|| solve(x-1,y+2,currentMoveNumber+1) || solve(x+1, y+2,currentMoveNumber+1)){
+		    return true;
+		}
+	    }
+	}catch (ArrayIndexOutOfBoundsException e){
+	    return false;
+	    }
+	return true;
     }
-
-	*/
 
 	public static void main(String[]args){
 	    KnightsTour p1 = new KnightsTour(10);
