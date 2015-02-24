@@ -12,11 +12,15 @@ public class KnightsTour{
     //instance variable
     private int[][]board;
     private int size, numMoves;
+
+    public String name(){
+	return "majumder.abhimannu";
+    }
     
     public KnightsTour(int length){
 	board = new int[length][length];
 	size = length;
-	numMoves = 1;
+	numMoves = 0;
 	for (int rows = 0; rows < size; rows++){
 	    for (int cols = 0; cols < size; cols++){
 		board[rows][cols] = 0;
@@ -52,40 +56,38 @@ public class KnightsTour{
        
     
     public void solve(){
-	
+	solve(0,0);
     }
     
-    public void solve(int startx, int starty){
-  
-    }
-    
-    
-    
-    public boolean solve(int x,int y,int currentMoveNumber){
+    public boolean solve(int x, int y){
 	System.out.println(this);
 	wait(20);
-	if (currentMoveNumber == size * size){
+       	if (numMoves == size*size + 1){
 	    return true;
-	}
+       	}
 	try{
 	    if (board[y][x] != 0){
 		return false;
 	    }
 	    if (board[y][x] == 0){
-		board[y][x] = currentMoveNumber;
-		if (solve(x-2,y-1,currentMoveNumber+1) || solve(x-2,y-1,currentMoveNumber+1) || solve(x+2,y-1,currentMoveNumber+1) || solve(x+2,y+1,currentMoveNumber+1) || solve(x-1,y-2,currentMoveNumber+1) || solve(x+1,y-2,currentMoveNumber+1)|| solve(x-1,y+2,currentMoveNumber+1) || solve(x+1, y+2,currentMoveNumber+1)){
+		board[y][x] = numMoves;
+		numMoves++;
+		if (solve(x-2,y-1) || solve(x-2,y+1) || solve(x+2,y-1) || solve(x+2,y+1) || solve(x-1,y-2) || solve(x+1,y-2)|| solve(x-1,y+2) || solve(x+1, y+2)){
 		    return true;
 		}
 	    }
 	}catch (ArrayIndexOutOfBoundsException e){
 	    return false;
-	    }
-	return true;
+	}
+	return false;
     }
+		
+	
 
 	public static void main(String[]args){
 	    KnightsTour p1 = new KnightsTour(10);
-	    System.out.println(p1.toString());
+	    // System.out.println(p1.toString());
+	    p1.solve(4,5);
 	}
     
     
