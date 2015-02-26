@@ -63,8 +63,7 @@ public class NQueens{
     }
 					 
     public boolean solve(int y,int x,int count,int[] coordinates){
-	System.out.println(this);
-	wait(20);
+
 	if (count == size){
 	    return true;
 	}
@@ -86,9 +85,6 @@ public class NQueens{
 	return solve(y, x+1,count,coordinates);
     }
 
-	public static void main(String[]args){
-	    NQueens x = new NQueens(10);
-	    x.solve();
-	}
+
     
     }
