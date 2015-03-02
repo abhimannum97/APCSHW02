@@ -8,8 +8,9 @@ public class LakeMaking{
     int[][] instructions;
     File file;
 
-    public LakeMaking{
-	file = new File("lakemaking.txt");
+    public LakeMaking(String x) throws FileNotFoundException{
+	file = new File(x);
+	try{
 	Scanner sc = new Scanner(file);
 	while (sc.hasNextInt()){
 	    R = sc.nextInt();
@@ -27,15 +28,21 @@ public class LakeMaking{
 		}
 	    }
 	}
+	}
+	catch (FileNotFoundException e){
+	    e.printStackTrace();
+	}
     }
 
 
-    public int makeLake{
+
+    public int makeLake(){
 	for (int i = 0; i < N; i++){
 	    int row = instructions[i][0];
 	    int col = instructions[i][1];
 	    int dig = instructions[i][2];
 	    int max = 0;
+	    //find max
 	    for (int r = row-1; r < r + 3; r++){
 		for (int c = col-1; c < c + 3; c++){
 		    if (topo[r][c] > max){
@@ -43,6 +50,7 @@ public class LakeMaking{
 		    }
 		}
 	    }
+	    //digs
 	    for (int r = row - 1; r < r + 3; r++){
 		for (int c = col-1; c < c + 3; c++){
 		    if (topo[r][c] <= max && topo[r][c] >= max - dig){
@@ -51,6 +59,7 @@ public class LakeMaking{
 		}
 	    }
 	}
+	//adds water
 	for (int r = 0; r < topo.length; r++){
 	    for (int c = 0; c < topo[0].length; c++){
 		topo[r][c] = E - topo[r][c];
@@ -59,5 +68,24 @@ public class LakeMaking{
 		}
 	    }
 	}
+	//find aggregate depth
+	int depth = 0;
+	for (int r = 0; r < topo.length; r++){
+	    for (int c = 0; c < topo[0].length; c++){
+		if (topo[r][c] > 0){
+		    depth += topo[r][c];
+		}
+	    }
+	}
+	return depth * 72 * 72;
+    }
+
+    public static void main(String[]args){
+	LakeMaking A = new LakeMaking("lakemaking.txt");
+	System.out.println(A.makeLake());
+    }
+}
+
+
 	
     
