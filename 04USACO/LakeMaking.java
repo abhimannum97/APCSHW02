@@ -8,26 +8,26 @@ public class LakeMaking{
     int[][] instructions;
     File file;
 
-    public LakeMaking(String x) throws FileNotFoundException{
-	file = new File(x);
+    public LakeMaking(String x){
 	try{
-	Scanner sc = new Scanner(file);
-	while (sc.hasNextInt()){
-	    R = sc.nextInt();
-	    C = sc.nextInt();
-	    E = sc.nextInt();
-	    N = sc.nextInt();
-	    for (int r = 0; r < R; r++){
-		for (int c = 0; c < C; c++){
-		    topo[r][c] = sc.nextInt();
+	    file = new File(x);
+	    Scanner sc = new Scanner(file);
+	    while (sc.hasNextInt()){
+		R = sc.nextInt();
+		C = sc.nextInt();
+		E = sc.nextInt();
+		N = sc.nextInt();
+		for (int r = 0; r < R; r++){
+		    for (int c = 0; c < C; c++){
+			topo[r][c] = sc.nextInt();
+		    }
+	    }
+		for (int r = 0; r < N; r++){
+		    for (int c = 0; c < 3; c++){
+			instructions[r][c] = sc.nextInt();
+		    }
 		}
 	    }
-	    for (int r = 0; r < N; r++){
-		for (int c = 0; c < 3; c++){
-		    instructions[r][c] = sc.nextInt();
-		}
-	    }
-	}
 	}
 	catch (FileNotFoundException e){
 	    e.printStackTrace();
@@ -80,7 +80,7 @@ public class LakeMaking{
 	return depth * 72 * 72;
     }
 
-    public static void main(String[]args){
+    public static void main(String[]args) throws FileNotFoundException{
 	LakeMaking A = new LakeMaking("lakemaking.txt");
 	System.out.println(A.makeLake());
     }
