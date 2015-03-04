@@ -17,11 +17,13 @@ public class LakeMaking{
 		C = sc.nextInt();
 		E = sc.nextInt();
 		N = sc.nextInt();
+		topo = new int[R][C];
 		for (int r = 0; r < R; r++){
 		    for (int c = 0; c < C; c++){
 			topo[r][c] = sc.nextInt();
 		    }
-	    }
+		}
+		instructions = new int[N][3];
 		for (int r = 0; r < N; r++){
 		    for (int c = 0; c < 3; c++){
 			instructions[r][c] = sc.nextInt();
@@ -38,21 +40,21 @@ public class LakeMaking{
 
     public int makeLake(){
 	for (int i = 0; i < N; i++){
-	    int row = instructions[i][0];
-	    int col = instructions[i][1];
+	    int row = instructions[i][0]-1;
+	    int col = instructions[i][1]-1;
 	    int dig = instructions[i][2];
 	    int max = 0;
 	    //find max
-	    for (int r = row-1; r < r + 3; r++){
-		for (int c = col-1; c < c + 3; c++){
+	    for (int r = row; r < row + 3; r++){
+		for (int c = col; c < col + 3; c++){
 		    if (topo[r][c] > max){
 			max = topo[r][c];
 		    }
 		}
 	    }
 	    //digs
-	    for (int r = row - 1; r < r + 3; r++){
-		for (int c = col-1; c < c + 3; c++){
+	    for (int r = row; r < row + 3; r++){
+		for (int c = col; c < col + 3; c++){
 		    if (topo[r][c] <= max && topo[r][c] >= max - dig){
 			topo[r][c] = max - dig;
 		    }
@@ -83,6 +85,7 @@ public class LakeMaking{
     public static void main(String[]args) throws FileNotFoundException{
 	LakeMaking A = new LakeMaking("lakemaking.txt");
 	System.out.println(A.makeLake());
+	//System.out.println();
     }
 }
 
