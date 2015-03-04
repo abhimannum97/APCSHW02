@@ -84,8 +84,7 @@ public class LakeMaking{
 
     public static void main(String[]args) throws FileNotFoundException{
 	LakeMaking A = new LakeMaking("lakemaking.txt");
-	System.out.println(A.makeLake());
-	//System.out.println();
+
     }
 }
 
