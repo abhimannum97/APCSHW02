@@ -1,0 +1,17 @@
+java.util.*
+
+public class QuickSelect{
+
+    public void partition(int[] ary, int si, int ei){
+	Random r = new Random();
+	int[] D = new int[ary.length];
+	for (int i = 0; i < D.length; i++){
+	    if (i < si || i > ei){
+		D[i] = ary[i];
+	    }
+	}
+	int x = r.nextInt(ary.length);
+	
+	
+
+}
