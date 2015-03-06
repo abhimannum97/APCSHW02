@@ -10,34 +10,35 @@ public class QuickSelect{
 	return "[" + ans + "]";
     }
 
-    public int[] partition(int[] ary, int start, int end){
-	Random r = new Random();
-	int si = start;
-	int ei = end;
-	int[] D = new int[ary.length];
-	for (int i = 0; i < D.length; i++){
+    public static void partition(int[] ary, int si, int ei){
+	System.out.println(Arrays.toString(ary));
+	/*int[] D = new int[ary.length];
+	for (int i = 0; i < ary.length; i++){
 	    if (i < si || i > ei){
 		D[i] = ary[i];
 	    }
 	}
-	System.out.println(toString(ary));
-	System.out.println(toString(D));
-	int pivot = ary[r.nextInt(ei - si) + si];
-	int i = start;
-	while (si != ei){
-	    if (ary[i] < pivot){
+	*/
+	int start = si;
+	int end = ei;
+	int ri = si + (int)(Math.random() * (ei - si + 1));
+	int pivot = ary[ri];
+	System.out.println("pivot =" + pivot);
+	System.out.println(Arrays.toString(ary));
+	for (int i = start; i <= end; i++){
+	    if(ary[i] < pivot){
 		D[si] = ary[i];
 		si++;
-		i++;
-	    }else{
+	    }else if (ary[i] > pivot){
 		D[ei] = ary[i];
 		ei--;
-		i++;
 	    }
+	     System.out.println(Arrays.toString(D));
 	}
-	return D;
+       	D[ri] = pivot;
+	System.out.println(Arrays.toString(D));
     }
-
+    
     public static void main(String[]args){
 	int[] A = new int[10];
 	Random rand = new Random();
@@ -47,7 +48,7 @@ public class QuickSelect{
 	
 	QuickSelect qs = new QuickSelect();
         
-	System.out.println(qs.toString(qs.partition(A, 4, 7)));
+	qs.partition(A, 0, 9);
     }
 	
 
