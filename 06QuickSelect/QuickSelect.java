@@ -25,18 +25,29 @@ public class QuickSelect{
 	int pivot = ary[ri];
 	System.out.println("pivot =" + pivot);
 	System.out.println(Arrays.toString(ary));
+	int holder = 0;
 	for (int i = start; i <= end; i++){
+	    if (si != ei){
 	    if(ary[i] < pivot){
-		D[si] = ary[i];
+		holder = ary[si];
+		ary[si] = ary[i];
+		ary[i] = holder;
 		si++;
 	    }else if (ary[i] > pivot){
-		D[ei] = ary[i];
+		holder = ary[ei];
+		ary[ei] = ary[i];
+		ary[i] = holder;
 		ei--;
 	    }
-	     System.out.println(Arrays.toString(D));
+	    }
+	     System.out.println(Arrays.toString(ary));
 	}
-       	D[ri] = pivot;
-	System.out.println(Arrays.toString(D));
+       
+	System.out.println(Arrays.toString(ary));
+    }
+
+    public static int quickSelect(int ary[], int n){
+	return 4;
     }
     
     public static void main(String[]args){
