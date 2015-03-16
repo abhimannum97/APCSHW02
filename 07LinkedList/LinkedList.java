@@ -1,8 +1,8 @@
 import java.util.*;
 
-public class LinkedList{
+public class LinkedList<T>{
 
-    private LNode node;
+    private LNode<T> node;
     private int size;
 
     public LinkedList(){
@@ -13,8 +13,8 @@ public class LinkedList{
 	return size;
     }
 
-    public int get(int index){
-	LNode current = node.getNext();
+    public T get(int index){
+	LNode<T> current = node.getNext();
 	int i = 0;
 	while(i < index){
 	    current = node.getNext();
@@ -23,7 +23,7 @@ public class LinkedList{
     }
 
     public int indexOf(int val){
-	LNode current = node;
+	LNode<T> current = node;
 	int ind = 0;
 	while(current.getNext() != null){
 	    if (val == current.getData()){
@@ -34,21 +34,21 @@ public class LinkedList{
 	}
 	
     public boolean add(int val){
-	LNode temp = node;
-	if (temp.size() == 0){
-	    node = new LNode(val);
+	LNode<T> temp = node;
+	if (size() == 0){
+	    node = new LNode<T>(val);
 	}else{
 	    while(temp.getNext() != null){
 		temp = this.getNext();
 	    }
-	    temp.setNext(new LNode(val));
+	    temp.setNext(new LNode<T>(val));
 	}
 	size++;
 	return true;
     }
 
     public boolean add(int index, int value){
-	LNode temp = node;
+	LNode<T> temp = node;
 	for (int i = 0; i < index; i++){
 	    temp = temp.getNext();
 	}
@@ -56,26 +56,35 @@ public class LinkedList{
 	return true;
     }
    
-    public int set(int ind, int val){
-	LNode current = node;
+    public T set(int ind, int val){
+	LNode<T> current = node;
 	int i = 0;
 	while (i < ind){
 	    current = current.getNext();
 	}
-	int temp = current.getData();
+	T temp = current.getData();
 	current.setData(val);
 	return temp;
     }
 
-    public int remove(int ind){
-	LNode current = node;
+    public T remove(int ind){
+	LNode<T> current = node;
 	int i = 0;
 	while (i < ind - 1){
 	    current = current.getNext();
 	}
-	int x = current.getNext().getData();
+	T x = current.getNext().getData();
 	current.setNext(current.getNext().getNext());
 	return x;
+    }
+
+    public static void main(String [] args){
+	
+	LinkedList test = new LinkedList();
+	
+	test.add(2);
+	test.add(3);
+	test.add(4);
     }
     
     
