@@ -19,23 +19,23 @@ public class Sorts{
     }
 
     public static void order(int[]x, int low, int med, int max){
-	int first = low;
-	int second = med;
+	int one = low;
+	int two = med;
 	int[]temp = new int[max - low];
 	for (int i = 0; i < temp.length; i++){
-	    if (first >= med){
-		temp[i] = x[second];
-		second++;
-	    }else if (second >= max){
-		temp[i] = x[first];
-		first++;
+	    if (one >= med){
+		temp[i] = x[two];
+		two++;
+	    }else if (two >= max){
+		temp[i] = x[one];
+		one++;
 	    }else{
-		if (x[first] > x[second]){
-		    temp[i] = x[second];
-		    second++;
+		if (x[one] > x[two]){
+		    temp[i] = x[two];
+		    two++;
 		}else{
-		    temp[i] = x[first];
-		    first++;
+		    temp[i] = x[one];
+		    one++;
 		}
 	    }
 	}
