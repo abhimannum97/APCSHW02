@@ -50,7 +50,7 @@ public class LinkedList<T> implements Iterator<T>{
 	current = first;
 	int i = 0;
 	while(i < index){
-	    current = node.getNext();
+	    current = current.getNext();
 	    i++;
 	}
 	return current.getData();
@@ -69,7 +69,7 @@ public class LinkedList<T> implements Iterator<T>{
 	
 
     public boolean add(int index, T value){
-	if (ind < 0 || ind >= size){
+	if (index < 0 || index >= size){
 	    return false;
 	}else if (size == 0){
 	    first = new LNode<T>(value);
@@ -78,20 +78,20 @@ public class LinkedList<T> implements Iterator<T>{
 	current = first;
 	int i = 0;
 	while (i < index){
-	    current = temp.getNext();
+	    current = current.getNext();
 	    i++;
 	}
-	current.setNext(new LNode<T>(value, temp.getNext()));
+	current.setNext(new LNode<T>(value, current.getNext()));
 	}
 	size++;
 	return true;
     }
 
-    public add(T value){
+    public boolean add(T value){
 	return add(size, value);
     }
    
-    public T set(int ind, T val)throw IndexOutOfBoundsException{
+    public T set(int ind, T val) throws IndexOutOfBoundsException{
 	if (ind < 0 || ind >= size()){
 	    throw new IndexOutOfBoundsException();
 	}
@@ -111,6 +111,12 @@ public class LinkedList<T> implements Iterator<T>{
 	    throw new IndexOutOfBoundsException();
 	}
 	current = first;
+	if (ind == 0){
+	    first = first.getNext();
+	}
+	if (size == 0){
+	    first = null;
+	}
 	int i = 0;
 	while (i < ind - 1){
 	    current = current.getNext();
@@ -121,6 +127,20 @@ public class LinkedList<T> implements Iterator<T>{
 	return x;
     }
 
+     public String toString(){
+	String str = "[";
+	current = first;
+	while (current != null){
+	    str += current.getData() + ",";
+	    current = current.getNext();
+	}
+	return str.substring(0, str.length() - 1) + "]";
+    }
+
+     public boolean isEmpty(){
+	return size == 0;
+    }
+
     public static void main(String [] args){
 	
 	LinkedList test = new LinkedList();
@@ -128,6 +148,8 @@ public class LinkedList<T> implements Iterator<T>{
 	test.add(2);
 	test.add(3);
 	test.add(4);
+	System.out.println(test.toString());
+
     }
     
     
