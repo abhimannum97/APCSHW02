@@ -4,6 +4,10 @@ public class MyQueue extends LinkedList{
 
     LinkedList queue;
 
+    public String name(){
+	return "majumder.abhimannu";
+    }
+
     public MyQueue(){
 	queue = new LinkedList();
     }
@@ -18,7 +22,8 @@ public class MyQueue extends LinkedList{
     }
 
     public T dequeue(){
-	T ans = quenue.get(0);
-	
+	return queue.remove(0);
+    }
+}	
 	    
 	
