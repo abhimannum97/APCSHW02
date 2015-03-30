@@ -75,7 +75,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	
 
     public boolean add(int index, T value){
-	if (index < 0 || index >= size){
+	if (index < 0 || index > size){
 	    return false;
 	}else if (size == 0){
 	    first = new LNode<T>(value);
@@ -83,7 +83,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	} else {
 	current = first;
 	int i = 0;
-	while (i < index){
+	while (i < index - 1){
 	    current = current.getNext();
 	    i++;
 	}
@@ -151,9 +151,15 @@ public class MyLinkedList<T> implements Iterable<T>{
 	
 	MyLinkedList<Integer> test = new MyLinkedList<Integer>();
 	
-	test.add(2);
-	test.add(3);
-	test.add(4);
+	System.out.println(test.add(1));
+       	System.out.println(test.add(2));
+	System.out.println(test.add(3));
+	System.out.println(test.add(4));
+	System.out.println(test.add(5));
+	System.out.println(test.set(1,3));
+	System.out.println(test.toString()); 
+	System.out.println(test.isEmpty());
+	System.out.println(test.remove(2));
 	System.out.println(test.toString());
 
     }
