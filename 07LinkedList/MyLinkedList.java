@@ -112,7 +112,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	return temp;
     }
 
-    public T remove(int ind) throws IndexOutOfBoundsException{
+    /*  public T remove(int ind) throws IndexOutOfBoundsException{
 	if (ind < 0 || ind >= size()){
 	    throw new IndexOutOfBoundsException();
 	}
@@ -132,6 +132,35 @@ public class MyLinkedList<T> implements Iterable<T>{
 	current.setNext(current.getNext().getNext());
 	return x;
     }
+    */
+
+    public T remove(int ind) throws IndexOutOfBoundsException{
+	if (ind >= size() || ind < 0){
+	    throw new IndexOutOfBoundsException();
+	}
+	current = first;
+	LNode<T> temp = current;
+	if (ind == 0){
+	    first = current.getNext();
+	    current = first;
+	    size--;
+	    return temp.getData();
+	}
+	int i = 0;
+	while(i + 1 != ind){
+	    current = current.getNext();
+	    temp = temp.getNext();
+	    i++;
+	}
+	T x = temp.getNext().getData();
+	if (ind+1 != size){
+	    current.setNext(current.getNext().getNext());
+	} else {
+	    current.setNext(null);
+	}
+       	size--;
+	return x;
+    }
 
      public String toString(){
 	String str = "[";
@@ -145,25 +174,8 @@ public class MyLinkedList<T> implements Iterable<T>{
 
      public boolean isEmpty(){
 	return size == 0;
-    }
+     }
 
-    public static void main(String [] args){
-	
-	MyLinkedList<Integer> test = new MyLinkedList<Integer>();
-	
-	System.out.println(test.add(1));
-       	System.out.println(test.add(2));
-	System.out.println(test.add(3));
-	System.out.println(test.add(4));
-	System.out.println(test.add(5));
-	System.out.println(test.set(1,3));
-	System.out.println(test.toString()); 
-	System.out.println(test.isEmpty());
-	System.out.println(test.remove(2));
-	System.out.println(test.toString());
-
-    }
-    
     
 
 }
