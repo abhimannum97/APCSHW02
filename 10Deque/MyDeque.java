@@ -1,12 +1,30 @@
 import java.util.*;
 
-public class MyDeque{
+public class MyDeque<T>{
 
     private Object[] deq;
     private int head, tail, size;
 
-    public void addFirst(T value){
+    public MyDeque(int s){
+	deq = new Object[s];
+	head = 0;
+	tail = 0;
+    }
     
+    public MyDeque(){
+	this(10);
+    }
+
+    public T getFirst(){
+	return (T)deq[head];
+    }
+
+    public T getLast() throws NoSuchElementException{
+	return (T)deq(tail);
+    }
+    
+    public void addFirst(T value){
+	
     }
 
     public void addLast(T value){
@@ -21,14 +39,6 @@ public class MyDeque{
 
     }
 
-    public T getFirst() throws NoSuchElementException{
-
-    }
-
-    public T getLast() throws NoSuchElementException{
-
-    }
-
     public Object[] resize(){
 	Object[] ary = new Object[size*2];
 	int ind = 0;
@@ -37,7 +47,9 @@ public class MyDeque{
 	    ind++;
 	    head++;
 	}
-	if (deq[tail] != null){
+	if (deq[0] != null){
+	    int i = 0;
+	    (while i < tail+1)
 	    
 	}
     }
