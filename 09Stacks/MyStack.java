@@ -21,6 +21,10 @@ public class MyStack<T>{
 	return stack.remove(0);
     }
 
+    public T peek(){
+	return stack.get(0);
+    }
+
     public boolean isEmpty(){
 	return stack.size() == 0;
     }
