@@ -6,6 +6,12 @@ public class MyCoordinate{
 	y = 0;
     }
     
+    public String toString(){
+	String str;
+	str = "(" + x + " , " + y + ")"; 
+	return str;
+    }
+    
     public int getX(){
 	return x;
     }
