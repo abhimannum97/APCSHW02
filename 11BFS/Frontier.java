@@ -17,10 +17,29 @@ public class Frontier{
 	    } else {
 		deq.addLast(coor);
 	    }
-	} else {
+	}
+	if (mode == 2){
 	    deq.push(coor);
 	}
     }
+
+    public void remove() throws NoSuchElementException{
+	if (deq.size() < 1){
+	    throw new NoSuchElementException();
+	}
+	if (mode == 1){
+		deq.remove();
+	}
+	if (mode == 2){
+	    deq.pop();
+	}
+    }
+
+}
+	   
+	    
+
+    
        
 	    
 	    
