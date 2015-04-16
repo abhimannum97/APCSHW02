@@ -2,6 +2,7 @@ import java.util.*
 
 public class Maze{
     private int[][] maze;
+    private Frontier current;
     private static final String clear = "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
@@ -24,6 +25,7 @@ public class Maze{
 		    //calculate width of the maze
 		    maxx = line.length();
 		}
+		
 		//every new line add 1 to the height of the maze
 		maxy++;
 		ans += line;
@@ -36,6 +38,13 @@ public class Maze{
 	    System.exit(0);
 	}
     }
+
+    public boolean solveBest(){
+	Frontier rest = new Fronteir(mode);
+	Point start = new Coordinate(startx, starty);
+	while(
+
+
 
     public String toString(){ //do not do the funky character
 	
