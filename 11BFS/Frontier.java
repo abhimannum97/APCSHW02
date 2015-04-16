@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class Frontier{
-    Coordinate one, two, three;
-    MyDeque deq;
+    MyCoordinate one, two, three;
+    MyDeque<Node> deq;
     int mode;
 
     public Frontier(int x){
