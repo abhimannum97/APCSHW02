@@ -22,8 +22,38 @@ public class MyDeque<T>{
     public T getLast() throws NoSuchElementException{
 	return (T)deq(tail);
     }
+
+    public void copy(int adv){
+	int[] temp = new int[size];
+	int start = head;
+	while(start != tail+1){
+	    if (start == size - 1){
+		start = 0;
+	    }
+	    if (start == 0){
+		temp[size-1] = deq[start];
+		start++;
+	    }else{
+		temp[start+adv] = deq[start];
+		start++;
+	    }
+	}
+	head = head + adv;
+	tail = tail + adv;
+	deq = temp;
+    }
     
     public void addFirst(T value){
+	copy(1);
+	if (head != 0){
+	    head = head - 1;
+	}else{
+	    head = size - 1;
+	}
+	deq[head] = value;
+    }
+	
+	
 	
     }
 
@@ -53,5 +83,7 @@ public class MyDeque<T>{
 	    
 	}
     }
+
+    
 }
 	
