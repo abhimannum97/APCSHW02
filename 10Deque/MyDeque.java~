@@ -9,8 +9,6 @@ public class MyDeque<T>{
 	deq = new Object[s];
 	head = 0;
 	tail = 0;
-	capacity = 0;
-	size = 0;
     }
     
     public MyDeque(){
@@ -54,7 +52,6 @@ public class MyDeque<T>{
 	}else{
 	    deq[ind] = value;
 	}
-	capacity++;
     }
 	
 	
@@ -65,19 +62,17 @@ public class MyDeque<T>{
 	}else{
 	    head -= 1;
 	}
-	add(head,value);
-	resize();
+	capacity++;
+	deq[head] = value;
+	//resize();
     }
 	    
 	
     public void addLast(T value){
-	if (tail == deq.length - 1){
-	    tail = 0;
-	}else{ 
 	tail++;
-	}
+	capacity++;
 	add(tail,value);
-	resize();
+	//resize();
     }
     
     public T removeFirst() throws NoSuchElementException{
@@ -93,7 +88,7 @@ public class MyDeque<T>{
 	add(head,null);
 	head++;
 	capacity--;
-	resize();
+	//	resize();
 	return value;
     }
 
@@ -105,7 +100,7 @@ public class MyDeque<T>{
 	    deq[tail] = null;
 	    tail--;
 	    capacity--;
-	    resize();
+	    //resize();
 	    return value;
 	}
     }
@@ -118,36 +113,13 @@ public class MyDeque<T>{
     }
 
     public Object[] resize(){
-	boolean run = false;
-	Object[] ary;
 	if (capacity > size/2){
-	    ary = new Object[size*2];
-	    size = size * 2;
-	    run = true;
-	}else if (capacity < size / 4){
-	    ary = new Object[size/2];
-	    size = size/2;
-	    run = true;
-	}
-	if (run){
+	    Object[] ary = new Object[size*2];
 	    if (wrap()){
-		int head_1 = head;
-		int head_2 = ary.length - (deq.length - tail);
-		for (int i = head_2; i < ary.length; i++){
-		    ary[i] = deq[head_1];
-		    head_1++;
-		}
-		for (int i = 0; i < tail+1;i++){
-		    ary[i] = deq[i];
-		}
-	    }else{
-		for (int i = head; i < tail+1; i++){
-		    ary[i] = deq[i];
-		}
-	    }
-	}
-    }
+		for (int i = 0; i < tail+1; i++){
 		    
+    
+    
     public String toString(){
 	String str = "[ ";
 	for (int i = 0; i < deq.length; i++){
