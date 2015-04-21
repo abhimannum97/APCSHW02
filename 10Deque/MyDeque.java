@@ -117,9 +117,9 @@ public class MyDeque<T>{
 	    return false;
     }
 
-    public Object[] resize(){
+    public boolean resize(){
 	boolean run = false;
-	Object[] ary;
+	Object[] ary = new Object[size];
 	if (capacity > size/2){
 	    ary = new Object[size*2];
 	    size = size * 2;
@@ -146,6 +146,8 @@ public class MyDeque<T>{
 		}
 	    }
 	}
+	deq = ary;
+	return run;
     }
 		    
     public String toString(){
@@ -165,12 +167,12 @@ public class MyDeque<T>{
     
     public static void main(String [] args){
 	
-	MyDeque test = new MyDeque();
+	MyDeque<Integer> test = new MyDeque<Integer>();
 	
-	test.add(0);
-	test.add(1);
-	test.add(2);
-	test.add(3);
+	test.add(0,0);
+	test.add(1,1);
+	test.add(2,2);
+	test.add(3,3);
 	System.out.println(test.toString());
 	test.addFirst(2);
 	System.out.println(test.toString());
