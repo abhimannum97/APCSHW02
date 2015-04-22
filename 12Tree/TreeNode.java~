@@ -1,0 +1,10 @@
+import java.util.*;
+
+public class TreeNode<T>{
+
+    T data;
+    TreeNode<T> left, right, root;
+
+    public TreeNode(T value){
+	data = value;
+    }
