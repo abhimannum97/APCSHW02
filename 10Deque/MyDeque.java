@@ -10,7 +10,7 @@ public class MyDeque<T>{
 	head = 0;
 	tail = 0;
 	capacity = 0;
-	size = 0;
+	size = s;
     }
     
     public MyDeque(){
@@ -60,12 +60,15 @@ public class MyDeque<T>{
 	
     
     public void addFirst(T value){
-	if (head == 0){
+	if (isEmpty()){
+	    head = 0;
+	}else if (head == 0){
 	    head = deq.length - 1;
 	}else{
 	    head -= 1;
 	}
 	add(head,value);
+	capacity++;
 	resize();
     }
 	    
@@ -93,7 +96,7 @@ public class MyDeque<T>{
 	add(head,null);
 	head++;
 	capacity--;
-	resize();
+       	resize();
 	return value;
     }
 
@@ -124,29 +127,27 @@ public class MyDeque<T>{
 	    ary = new Object[size*2];
 	    size = size * 2;
 	    run = true;
-	}else if (capacity < size / 4){
+	}
+	if (capacity < size / 4){
 	    ary = new Object[size/2];
 	    size = size/2;
 	    run = true;
 	}
 	if (run){
-	    if (wrap()){
-		int head_1 = head;
-		int head_2 = ary.length - (deq.length - tail);
-		for (int i = head_2; i < ary.length; i++){
-		    ary[i] = deq[head_1];
-		    head_1++;
-		}
-		for (int i = 0; i < tail+1;i++){
-		    ary[i] = deq[i];
-		}
-	    }else{
-		for (int i = head; i < tail+1; i++){
-		    ary[i] = deq[i];
+	    int head_1 = head;
+	    int x = 0;
+	    if (this.wrap()){
+		for (int i = head_1; i < deq.length; i++){
+		    ary[x] = deq[i];
+		    x++;
 		}
 	    }
+	    for (int i = 0; i < tail+1; i++){
+		ary[x] = deq[i];
+		x++;
+	    }
+	    deq = ary;
 	}
-	deq = ary;
 	return run;
     }
 		    
@@ -164,23 +165,7 @@ public class MyDeque<T>{
 	}else
 	    return false;
     }
-    
-    public static void main(String [] args){
-	
-	MyDeque<Integer> test = new MyDeque<Integer>();
-	
-	test.add(0,0);
-	test.add(1,1);
-	test.add(2,2);
-	test.add(3,3);
-	System.out.println(test.toString());
-	test.addFirst(2);
-	System.out.println(test.toString());
-
-    }
-	
-	
-
+    	
     
 }
 	
