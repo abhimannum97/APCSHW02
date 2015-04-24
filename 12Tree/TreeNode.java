@@ -24,6 +24,45 @@ public class TreeNode<T>{
 	return r;
     }
 
-    public add(T data){
-	if (this.getData() ==  null){
+    public void set(T value){
+	data = value;
+    }
+    
+    public void setLeft(T value){
+	left = value;
+    }
+
+    public void setRight(T value){
+	right = value;
+    }
+
+    public boolean hasNext(){
+	if (left != null || right != null){
+	    return true;
+	}
+	return false;
+    }
+    
+    public boolean hasLeft(){
+	if (left != null){
+	    return true;
+	}
+	return false;
+    }
+
+    public boolean hasRight(){
+	if (right != null){
+	    return false;
+	}
+	return true;
+    }
+
+}
+
+	
+
+    
+
+    
+	
 	    
