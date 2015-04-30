@@ -1,60 +1,55 @@
 import java.util.*;
 
-public class TreeNode<T>{
+public class TreeNode<E>{
 
     T data;
-    TreeNode<T> left = null;
-    TreeNode<T> right = null;
+    TreeNode<E> left;
+    TreeNode<E> right;
 
-    public TreeNode(T value, TreeNode<T> l, TreeNode<T> r){
+    public TreeNode(E value){
 	data = value;
-	left = l;
-	right = r;
+	left = null;
+	right = null;
+    }
+
+    public TreeNode<E>(){
+	this(null);
     }
 
     public T getData(){
 	return data;
     }
 
-    public TreeNode<T> getLeft(){
+    public TreeNode<E> getLeft(){
 	return left;
     }
     
-    public TreeNode<T> getRight(){
-	return r;
+    public TreeNode<E> getRight(){
+	return right;
     }
 
-    public void set(T value){
+    public void set(E value){
 	data = value;
     }
     
-    public void setLeft(T value){
+    public void setLeft(TreeNode<E> value){
 	left = value;
     }
 
-    public void setRight(T value){
+    public void setRight(TreeNode<E> value){
 	right = value;
     }
 
     public boolean hasNext(){
-	if (left != null || right != null){
-	    return true;
-	}
-	return false;
+	return hasLeft() || hasRight();
     }
     
     public boolean hasLeft(){
-	if (left != null){
-	    return true;
-	}
-	return false;
+	return left != null;
     }
 
     public boolean hasRight(){
-	if (right != null){
-	    return false;
-	}
-	return true;
+	return right != null;
     }
 
 }

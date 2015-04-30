@@ -6,12 +6,11 @@ public class BTree<E> {
     public static final int PRE_ORDER = 0;
     public static final int IN_ORDER = 1;
     public static final int POST_ORDER = 2;
-    
 
     private TreeNode<E> root;
 
     public BTree() {
-	root = null;
+	root = new TreeNode<E>();
     }
 
     /*======== public void add() ==========
@@ -20,7 +19,13 @@ public class BTree<E> {
       
       Wrapper method for the recursive add()
       ====================*/     
-    public void add( E d ) { }
+    public void add( E d ) { 
+	if (root.getData() == null){
+	    root.set(d);
+	}else{
+	    add(root, new TreeNode<E>(d));
+	}
+    }      
 
     /*======== public void add() ==========
       Inputs:   TreeNode<E> curr, TreeNode<E> bn  
@@ -34,6 +39,21 @@ public class BTree<E> {
       added to randomly.
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
+	Random r = new Random();
+	int x = r.nextInt(2);
+	if (x == 0){
+	    if (curr.getLeft() == null){
+		curr.setLeft(bn);
+	    }else{
+		add(curr.getLeft(), bn);
+	    }
+	}else{
+	    if (curr.getRight() == null){
+		curr.setRight(bn);
+	    }else{
+		add(curr.getRight(),bn);
+	    }
+	}
     }
     
     public void traverse( int mode) {
@@ -54,6 +74,7 @@ public class BTree<E> {
       pre-order Traversal
       ====================*/
     public void preOrder( TreeNode<E> curr ) {
+    
     }
 
 
