@@ -5,52 +5,50 @@ public class Sorts{
     public String name(){
 	return "majumder. abhimannu";
     }
-
-    public static void mergesort(int[]x){
-	mergesort(x, 0, x.length);
-    }
-
-    public static void mergesort(int[]x, int low, int top){
-	if (top - low >= 2){
-	    mergesort(x, low, low + (top - low) / 2);
-	    mergesort(x, low + (top - low) / 2, top);
-	    order(x, low, low + (top - low) / 2, top);
+    
+    public static ArrayList<Integer> copy(int[] ary){
+	ArrayList<Integer> ans = new ArrayList<Integer>();
+	for (int i = 0; i < ary.length; i++){
+	    ans.add(ary[i]);
 	}
+	return ans;
+    }
+	    
+
+    public static void mergesort(int[] x){
+	ArrayList<Integer> one = new ArrayList<Integer>();
+	ArrayList<Integer> two = new ArrayList<Integer>();
+	one = copy(x);
+	two = order(one);
+	System.out.println(two);
     }
 
-    public static void order(int[]x, int low, int med, int max){
-	int one = low;
-	int two = med;
-	int[]temp = new int[max - low];
-	for (int i = 0; i < temp.length; i++){
-	    if (one >= med){
-		temp[i] = x[two];
-		two++;
-	    }else if (two >= max){
-		temp[i] = x[one];
-		one++;
-	    }else{
-		if (x[one] > x[two]){
-		    temp[i] = x[two];
-		    two++;
-		}else{
-		    temp[i] = x[one];
-		    one++;
+    public static ArrayList<Integer> order(ArrayList<Integer> z){
+	ArrayList<Integer> ans = new ArrayList<Integer>();
+	//	ArrayList<Integer> x = new ArrayList<Integer>();
+	//	ArrayList<Integer> y = new ArrayList<Integer>();
+	if (z.size() == 1){
+	    return z;
+	} else {
+	    ArrayList<Integer> x = order(new ArrayList<Integer>(z.subList(0, z.size()/2)));
+	    ArrayList<Integer> y = order(new ArrayList<Integer>(z.subList(z.size()/2, z.size())));
+	    // while (x.size() > 0 && y.size() > 0){
+	    while (x.size() > 0 && y.size() > 0){
+		if (x.get(0) <= y.get(0)){
+		    z.add(x.remove(0));
+		} else if (y.get(0) <= x.get(0)){
+		    z.add(y.remove(0));
+		}
+	    } // while (x.size() > 0 && y.size() > 0);
+	    if (x.size() > 0 || y.size() > 0){
+		if (!(x.isEmpty())){
+		    z.addAll(x);
+		} else {
+		    z.addAll(y);
 		}
 	    }
 	}
-	for (int i = 0; i < temp.length; i++){
-	    x[low + i] = temp[i];
-	}
-    }
-
-   public static int[] randomize(int min, int max, int len){
-	int[] a = new int[len];
-	Random r = new Random();
-	for(int i=0;i<len;i++){
-	    a[i]=r.nextInt(max-min+1)+min;
-	}
-	return a;
+	return z;
     }
 
     public static String toString(int[] ary){
@@ -60,12 +58,6 @@ public class Sorts{
 	}
 	ans += " ]";
 	return ans;
-    }
-
-    public static void main(String[]dd){
-	int[] a = randomize(0, 1000, 20);
-        mergesort(a);
-	System.out.println(toString(a));
     }
 
   
